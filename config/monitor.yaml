@@ -1,0 +1,14 @@
+# required
+github:
+  owner: docker
+  repo: swarm
+  # these 2 are optional but will hit rate-limit if not set
+  auth_user: rembaba
+  auth_token:
+
+# optional: default to 5 secs
+poll_interval: 5
+
+# optional
+notification_receivers:
+  - url: https://slack.com/api

@@ -1,0 +1,18 @@
+# Playbook to provision a machine and install, start github_watchdog service
+- hosts: all
+  config_files:
+    - monitor.yaml
+  sudo: True
+  tasks:
+        - include: monitor.example.yml
+        - name: Install pip
+          apt-get: install python-pip
+        - name: Install github-watch service
+          command: pip install -e git+https://github.com/rembaba/github-watch.git#egg=github-watch
+        - name: Install the config file
+          cp: monitor.example.yml monitor.yml
+
+
+  handlers:
+    - name: start github-watch
+      command: github_watch monitor.yml
